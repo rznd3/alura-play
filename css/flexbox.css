@@ -12,6 +12,66 @@
 
 /* SEÇÃO VÍDEOS */
 
+
+/* BOTÃO MAIS AÇÕES */
+
+.acoes-video {
+    position: relative;
+    margin-right: 10px; /* Ajuste para distanciar o botão da borda direita */
+    margin-bottom: 10px; /* Ajuste para distanciar o botão da borda inferior */
+}.acoes-video .acoes-dropdown {
+    position: absolute;
+    bottom: 0; /* Alteração necessária */
+    right: 0; /* Alteração necessária */
+}
+
+.dropdown-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px; /* Ajuste o tamanho do ícone */
+    color: #777; /* Ajuste a cor do ícone */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    padding: 5px; /* Ajuste para reduzir o espaço interno do menu */
+    min-width: auto; /* Remova a largura mínima para ajustar automaticamente ao conteúdo */
+    background-color: #f5f5f5; /* Ajuste a cor de fundo */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    border-radius: 15px; /* Ajuste o raio de borda */
+    z-index: 1; /* Definindo um z-index para que o menu apareça sobre outros elementos */
+    bottom: calc(100% + 10px); /* Ajuste a posição vertical */
+    right: 0; /* Ajuste a posição horizontal */
+}
+
+.show {
+  display: block;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 4px 10px; /* Ajuste para aumentar o espaçamento entre as opções */
+    text-decoration: none;
+    display: block;
+}
+
+
+
+.video {
+    position: relative;
+    border-radius: 10px; /* Ajuste este valor conforme necessário */
+    overflow: hidden; /* Garante que o conteúdo dentro do elemento seja cortado pelas bordas arredondadas */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra para destacar o elemento */
+}
+
+iframe {
+    border: none; /* Remove a borda padrão do iframe */
+    display: block; /* Garante que o iframe ocupe toda a largura disponível */
+    border-radius: 10px; /* Ajuste este valor para combinar com o raio de borda do contêiner */
+}
+
 .videos__container {
     display: flex;
     flex-wrap: wrap;
@@ -29,15 +89,18 @@
 /* grid vídeos */
 
 .descricao-video {
-    margin-top: 1rem;
     display: grid;
     text-align: start;
     column-gap: 1rem;
     row-gap: 10px;
     grid-template-columns: auto 1fr;
+    height: 80px;
+    background-color: aliceblue;
 }
 
 .descricao-video img {
+    margin-top: 1rem;
+    margin-left: 0.5rem;
     grid-area: 1 / 1 / 3 / 2;
 }
 
@@ -45,6 +108,8 @@
     grid-area: 1 / 2 / 2 / 3;
     font-weight: 700;
     color: #444444;
+    margin-top: 1rem;
+
 }
 
 .descricao-video p {
@@ -56,14 +121,14 @@
 .descricao-video img {
     width: 2em;
     height: 2em;
-    border-radius: 100%;
+    border-radius: 50%; /* Garante que a imagem seja exibida com bordas arredondadas */
 }
 
 @media(min-width: 834px) {
 
     .videos__container {
-        padding-left: 10%;
-        padding-right: 10%;
+        padding-left: 13%;
+        padding-right: 13%;
     }
 }
 

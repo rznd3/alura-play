@@ -19,7 +19,7 @@ async function buscarVideo(evento) {
         ))
         
     if (busca.length == 0) {
-        lista.innerHTML = `<h2 class="mensagem__titulo">Não há vídeos relacionados à esse título.</h2>`
+        lista.innerHTML = `<h2 class="mensagem__titulo__error">Não existem vídeos com o termo "${dadosBusca}"</h2>`
     }
 
 }

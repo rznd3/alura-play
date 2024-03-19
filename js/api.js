@@ -6,18 +6,25 @@ async function listaVideos() {
 }
 
 async function adicionarVideo(titulo, descricao, imagem) {
-    const conexao = await fetch("http://localhost:3000/", {
+    const conexao = await fetch("http://localhost:3000/videos", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
             titulo: titulo,
-            descricao: descricao,
+            descricao: `${descricao} mil visualizações`,
             url: url,
             imagem: imagem
         })
     })
+
+    if (!conexao.ok) {
+        throw new Error("Não foi possível enviar o vídeo")
+    }
+
+    const conexaoJson = await conexao.json()
+    return conexaoJson
 }
 
 async function buscarVideo(termoDeBusca) {
