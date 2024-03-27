@@ -1,9 +1,10 @@
 import { conectaApi } from "./api.js";
 import { initializeDropdownButtons } from "./dropdown.js";
+import { excluirVideo } from "./excluirVideo.js"
 
 const lista = document.querySelector("[data-lista]");
 
-export default function constroiCard(titulo, descricao, url, imagem) {
+export default function constroiCard(titulo, descricao, url, imagem, id) {
     const video = document.createElement("li");
     video.className = "videos__item";
     video.innerHTML = `
@@ -21,13 +22,15 @@ export default function constroiCard(titulo, descricao, url, imagem) {
             <div class="acoes-dropdown">
                 <button class="dropdown-btn" id="dropdown-btn">&#8230;</button>
                 <div class="dropdown-content">
-                    <a href="#">Editar</a>
-                    <a href="#">Excluir</a>
+                    <a href="../pages/editar-video.html?id=${id}" id="${id}" data-editar>Editar</a>
+                    <a href="#" id="${id}" data-excluir>Excluir</a>
                 </div>
             </div>
         </div>
     </div>
-    `;
+    `
+
+    video.dataset.id = id
 
     return video;
 }
@@ -37,11 +40,13 @@ async function listaVideos() {
         const listaApi = await conectaApi.listaVideos()
 
         listaApi.forEach(elemento => lista.appendChild(
-            constroiCard(elemento.titulo, elemento.descricao, elemento.url, elemento.imagem)
+            constroiCard(elemento.titulo, elemento.descricao, elemento.url, elemento.imagem, elemento.id)
         ));
 
         // Inicializa os botões de dropdown após adicionar os cards de vídeo
         initializeDropdownButtons();
+
+        excluirVideo();
     } catch {
         lista.innerHTML = "<h2 class='mensagem__titulo'>Não foi possível carregar a lista de vídeos</h2>"
     }
